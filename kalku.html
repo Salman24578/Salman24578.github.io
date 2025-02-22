@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		body{
+			font-family: Ariel, sans-serif;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			background-color: darkgrey;
+		}
+		.calcu{
+			background: green;
+			padding: 20px;
+			border-radius: 10px;
+		}
+		input[type="ipo"]{
+			width: 95%;
+			height: 40px;
+			text-align: right;
+			font-size: 24px;
+			margin-bottom: 5px;
+			border: 1px, red;
+			border-radius: 10px;
+			padding: 1px;
+		}
+		button{
+			width: 20%;
+			height: 40px;
+			font-size: 18px;
+			margin: 5px;
+			border: none;
+			border-radius: 20px;
+			background-color: red;
+			color: white;
+			cursor: pointer;
+			transition: background-color 0.3s;
+		}
+		button:hover{
+			background-color: grey;
+		}
+	</style>
+</head>
+<body>
+	<div class="calcu">
+		<input type="ipo" id="result" disabled>
+		<div>
+			<button onclick="tombol('%')">%</button>
+			<button onclick="hapus()">C</button>
+		</div>
+		<div>
+			<button onclick="tombol('1')">1</button>
+			<button onclick="tombol('2')">2</button>
+			<button onclick="tombol('3')">3</button>
+			<button onclick="tombol('+')">+</button>
+		</div>
+		<div>
+			<button onclick="tombol('4')">4</button>
+			<button onclick="tombol('5')">5</button>
+			<button onclick="tombol('6')">6</button>
+			<button onclick="tombol('-')">-</button>
+		</div>
+		<div>
+			<button onclick="tombol('7')">7</button>
+			<button onclick="tombol('8')">8</button>
+			<button onclick="tombol('9')">9</button>
+			<button onclick="tombol('*')">X</button>
+		</div>
+		<div>
+			<button onclick="tombol(',')">,</button>
+			<button onclick="tombol('0')">0</button>
+			<button onclick="hasil()">=</button>
+			<button onclick="tombol('/')">/</button>
+		</div>
+	</div>
+<script>
+	function tombol(value) {
+		if (value === ',') {
+			value = '.'
+		}
+		document.getElementById('result').value += value;
+	}
+	function hapus() {
+		document.getElementById('result').value = '';
+	}
+	function hasil() {
+		const lut = document.getElementById('result');
+		try { 			
+			const luth = lut.value;
+			if (luth.includes('//')) {
+				lut.value = 'Error';
+			} else {lut.value = eval(lut.value);}
+			if (luth.includes('/0')) {
+				lut.value = 'tidak bisa dibagi nol';
+			} else {lut.value = eval (lut.value);}
+		}catch (error){
+			lut.value = 'Error';
+		}
+	}
+
+</script>
+</body>
+</html>
